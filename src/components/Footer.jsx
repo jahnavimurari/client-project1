@@ -27,11 +27,14 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-xl font-bold font-display uppercase tracking-widest text-secondary">Quick Links</h4>
             <ul className="space-y-4">
-              {['Home', 'About Us', 'Our Menu', 'Specials', 'Reservations'].map(link => (
+              {['Home', 'About', 'Menu', 'Specials', 'Reviews', 'Contact'].map(link => (
                 <li key={link}>
-                  <a href="#" className="text-white/60 hover:text-white transition-colors">{link}</a>
+                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-white/60 hover:text-white transition-colors">{link}</a>
                 </li>
               ))}
+              <li>
+                <a href="#booking" className="text-white/60 hover:text-white transition-colors">Reservations</a>
+              </li>
             </ul>
           </div>
 

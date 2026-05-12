@@ -69,9 +69,9 @@ const Navbar = () => {
           <button className="text-white hover:text-secondary transition-colors">
             <User size={20} />
           </button>
-          <button className="btn-primary py-2 px-6 text-sm">
+          <a href="#booking" className="btn-primary py-2 px-6 text-sm">
             Book Table
-          </button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -102,9 +102,9 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="btn-primary mt-4">
+            <a href="#booking" className="btn-primary mt-4" onClick={() => setIsMobileMenuOpen(false)}>
               Book Table
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

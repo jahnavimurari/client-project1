@@ -18,16 +18,15 @@ const Login = ({ isOpen, onClose, onAuthSuccess }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      >
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        >
         {/* Backdrop */}
         <div 
           className="absolute inset-0 bg-background-dark/80 backdrop-blur-md"
@@ -48,7 +47,8 @@ const Login = ({ isOpen, onClose, onAuthSuccess }) => {
           {/* Close Button */}
           <button 
             onClick={onClose}
-            className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors z-10"
+            className="absolute top-6 right-6 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
+            aria-label="Close modal"
           >
             <X size={24} />
           </button>
@@ -139,6 +139,7 @@ const Login = ({ isOpen, onClose, onAuthSuccess }) => {
           </div>
         </motion.div>
       </motion.div>
+    )}
     </AnimatePresence>
   );
 };

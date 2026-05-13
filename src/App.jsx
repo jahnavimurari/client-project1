@@ -53,6 +53,10 @@ function App() {
     setCart(prev => prev.filter(item => item.id !== id));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     // Check for existing user
     const savedUser = localStorage.getItem('bonalu_user');
@@ -122,6 +126,7 @@ function App() {
             cart={cart}
             updateQuantity={updateQuantity}
             removeItem={removeItem}
+            clearCart={clearCart}
           />
           <Navbar 
             onLoginClick={() => setIsLoginOpen(true)} 

@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { X, Minus, Plus, Trash2, ShoppingBag, CheckCircle } from 'lucide-react';
 
-const CartDrawer = ({ isOpen, onClose, cart, updateQuantity, removeItem }) => {
+const CartDrawer = ({ isOpen, onClose, cart, updateQuantity, removeItem, clearCart }) => {
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const subtotal = cart.reduce((acc, item) => {
     const priceStr = item.price.replace('₹', '').replace(',', '');
     const price = isNaN(parseInt(priceStr)) ? 0 : parseInt(priceStr);
@@ -105,8 +107,43 @@ const CartDrawer = ({ isOpen, onClose, cart, updateQuantity, removeItem }) => {
               )}
             </div>
 
+            {/* Success Overlay */}
+            <AnimatePresence>
+              {isOrderSuccess && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="absolute inset-0 z-[110] bg-background-dark p-8 flex flex-col items-center justify-center text-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', delay: 0.2 }}
+                    className="w-24 h-24 bg-secondary/20 rounded-full flex items-center justify-center mb-8"
+                  >
+                    <CheckCircle className="text-secondary" size={48} />
+                  </motion.div>
+                  <h3 className="text-3xl font-display font-bold mb-4">Order Placed!</h3>
+                  <p className="text-white/60 text-lg mb-10">
+                    Your delicious meal is being prepared with love and will be ready soon.
+                  </p>
+                  <button 
+                    onClick={() => {
+                      setIsOrderSuccess(false);
+                      clearCart();
+                      onClose();
+                    }}
+                    className="w-full btn-primary py-4 rounded-2xl font-bold uppercase tracking-widest"
+                  >
+                    Back to Home
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Footer */}
-            {cart.length > 0 && (
+            {cart.length > 0 && !isOrderSuccess && (
               <div className="p-6 border-t border-white/10 bg-white/[0.02] space-y-6">
                 <div className="space-y-2">
                   <div className="flex justify-between text-white/60">
@@ -123,7 +160,10 @@ const CartDrawer = ({ isOpen, onClose, cart, updateQuantity, removeItem }) => {
                   </div>
                 </div>
 
-                <button className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-3 text-lg font-bold group shadow-2xl shadow-primary/20">
+                <button 
+                  onClick={() => setIsOrderSuccess(true)}
+                  className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-3 text-lg font-bold group shadow-2xl shadow-primary/20"
+                >
                   Proceed to Checkout
                   <motion.div
                     animate={{ x: [0, 5, 0] }}

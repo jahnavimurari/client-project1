@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingBag, User } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick, onCartClick, user, onLogout, cartCount }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -55,6 +55,17 @@ const Navbar = () => {
               href={link.href}
               whileHover={{ scale: 1.05 }}
               className="nav-link text-sm uppercase tracking-widest font-medium"
+              onClick={(e) => {
+                if (link.href.startsWith('#')) {
+                  e.preventDefault();
+                  const id = link.href.substring(1);
+                  if (id) {
+                    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }
+              }}
             >
               {link.name}
             </motion.a>
@@ -63,12 +74,41 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="hidden lg:flex items-center gap-6">
-          <button className="text-white hover:text-secondary transition-colors">
+          <button 
+            onClick={onCartClick}
+            className="text-white hover:text-secondary transition-colors relative"
+          >
             <ShoppingBag size={20} />
+            {cartCount > 0 && (
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
+              >
+                {cartCount}
+              </motion.span>
+            )}
           </button>
-          <button className="text-white hover:text-secondary transition-colors">
-            <User size={20} />
-          </button>
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-xs text-secondary font-bold hidden md:block truncate max-w-[100px]">
+                {user.email.split('@')[0]}
+              </span>
+              <button 
+                onClick={onLogout}
+                className="text-white/60 hover:text-primary transition-colors text-xs uppercase tracking-widest font-bold"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={onLoginClick}
+              className="text-white hover:text-secondary transition-colors"
+            >
+              <User size={20} />
+            </button>
+          )}
           <a href="#booking" className="btn-primary py-2 px-6 text-sm">
             Book Table
           </a>
@@ -97,7 +137,18 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className="text-2xl font-display font-medium hover:text-secondary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  if (link.href.startsWith('#')) {
+                    e.preventDefault();
+                    const id = link.href.substring(1);
+                    if (id) {
+                      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }
+                }}
               >
                 {link.name}
               </a>

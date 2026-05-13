@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, ShoppingCart } from 'lucide-react';
 import { menuItems, categories } from '../data/menu';
 
-const Menu = () => {
+const Menu = ({ addToCart }) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -77,7 +77,10 @@ const Menu = () => {
                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button className="bg-white text-black p-3 rounded-full hover:bg-secondary transition-colors">
+                    <button 
+                      onClick={() => addToCart(item)}
+                      className="bg-white text-black p-3 rounded-full hover:bg-secondary transition-colors"
+                    >
                       <ShoppingCart size={20} />
                     </button>
                   </div>

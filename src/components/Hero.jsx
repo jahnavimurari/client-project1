@@ -35,16 +35,24 @@ const Hero = () => {
               </p>
 
               <div className="flex flex-wrap justify-start gap-6">
-                <motion.button
+                <motion.a
+                  href="#menu"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-primary flex items-center gap-2 group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   View Menu
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                </motion.a>
                 
-                <motion.button
+                <motion.a
+                  href="https://www.instagram.com/bonalukitchen?igsh=MWh5Ymh5ODZzMWRhYQ=="
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-3 text-white font-semibold group"
@@ -53,7 +61,7 @@ const Hero = () => {
                     <Play size={20} fill="currentColor" />
                   </span>
                   Watch Story
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>

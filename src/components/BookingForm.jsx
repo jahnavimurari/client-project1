@@ -70,14 +70,14 @@ const BookingForm = () => {
                       <div className="relative">
                         <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary" size={18} />
                         <select
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary appearance-none transition-all"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary appearance-none transition-all text-white"
                           value={formData.guests}
                           onChange={(e) => setFormData({...formData, guests: e.target.value})}
                         >
-                          <option value="1">1 Person</option>
-                          <option value="2">2 People</option>
-                          <option value="4">4 People</option>
-                          <option value="6">6+ People</option>
+                          <option value="1" className="bg-background-dark text-white">1 Person</option>
+                          <option value="2" className="bg-background-dark text-white">2 People</option>
+                          <option value="4" className="bg-background-dark text-white">4 People</option>
+                          <option value="6" className="bg-background-dark text-white">6+ People</option>
                         </select>
                       </div>
                     </div>
@@ -88,7 +88,7 @@ const BookingForm = () => {
                         <input
                           required
                           type="date"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary transition-all"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary transition-all text-white"
                           value={formData.date}
                           onChange={(e) => setFormData({...formData, date: e.target.value})}
                         />
@@ -101,7 +101,7 @@ const BookingForm = () => {
                         <input
                           required
                           type="time"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary transition-all"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-6 outline-none focus:border-secondary transition-all text-white"
                           value={formData.time}
                           onChange={(e) => setFormData({...formData, time: e.target.value})}
                         />

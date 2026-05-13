@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Star, Plus } from 'lucide-react';
 import { menuItems } from '../data/menu';
 
-const SpecialDishes = () => {
+const SpecialDishes = ({ addToCart }) => {
   const specials = menuItems.filter(item => item.isSpecial);
 
   return (
@@ -66,6 +66,7 @@ const SpecialDishes = () => {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={() => addToCart(item)}
                     className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hover:bg-primary-light transition-colors"
                   >
                     <Plus size={24} />

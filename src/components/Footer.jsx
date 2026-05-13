@@ -29,11 +29,34 @@ const Footer = () => {
             <ul className="space-y-4">
               {['Home', 'About', 'Menu', 'Specials', 'Reviews', 'Contact'].map(link => (
                 <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-white/60 hover:text-white transition-colors">{link}</a>
+                  <a 
+                    href={link === 'Home' ? '#' : `#${link.toLowerCase().replace(' ', '')}`} 
+                    className="text-white/60 hover:text-white transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const id = link === 'Home' ? null : link.toLowerCase().replace(' ', '');
+                      if (id) {
+                        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {link}
+                  </a>
                 </li>
               ))}
               <li>
-                <a href="#booking" className="text-white/60 hover:text-white transition-colors">Reservations</a>
+                <a 
+                  href="#booking" 
+                  className="text-white/60 hover:text-white transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Reservations
+                </a>
               </li>
             </ul>
           </div>

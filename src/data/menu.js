@@ -16,7 +16,7 @@ export const menuItems = [
     price: "₹380",
     rating: 4.8,
     description: "Traditional village-style country chicken curry.",
-    image: "/4fd3e2c032d0f4f24585112726d3a791.jpg",
+    image: "/8d3687df07d599780dede172ffc0e48d.jpg",
     isSpecial: true
   },
   {

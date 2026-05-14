@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const images = [
   "/download.png",
-  "/4fd3e2c032d0f4f24585112726d3a791.jpg",
+  "/8d3687df07d599780dede172ffc0e48d.jpg",
   "/4fc818682f7709484e1c10e86d02d57a.jpg",
 ];
 

@@ -23,7 +23,7 @@ const About = () => {
             >
               <div className="aspect-[4/5] relative overflow-hidden">
                 <img 
-                  src="/4fd3e2c032d0f4f24585112726d3a791.jpg" 
+                  src="/8d3687df07d599780dede172ffc0e48d.jpg" 
                   alt="Bonalu Kitchen Signature" 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
